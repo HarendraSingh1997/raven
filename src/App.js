@@ -17,8 +17,8 @@ function App() {
   const handleClick = () => {
     console.log("Button clicked");
     setX(prev => prev+1);
-    Raven.captureMessage(`Button clicked ${x}`);
-    Raven.setUserContext({email: 'xyz@gmail.com'});
+    //Raven.captureMessage(`Button clicked ${x}`);
+    //Raven.setUserContext({email: 'xyz@gmail.com'});
     console.log(Raven.lastEventId());
     // Raven.setEnvironment('development1');
     // Raven.setTagsContext({environment: 'development', version: '1.0.0'});
@@ -27,6 +27,12 @@ function App() {
     //   scope.setLevel('warning');
     //   Raven.captureMessage('Button clicked', { level: 'warning' });
     // });
+    
+    // console.log(Raven.setExtraContext({data:"data12121",message: `Button clicked ${x}`, email: 'harendra.singh@krazybee.com'}))
+    // Raven.context(() => {email: 'harendra.singh@krazybee.com'});
+    Raven.setExtraContext({ data: "bar", message: "my Button" })
+    Raven.captureMessage(`Button clicked ${x+1}`);
+    
   }
   return (
     <ErrorBoundary>
